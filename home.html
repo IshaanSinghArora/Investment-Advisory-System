@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Investment App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+        nav {
+            background-color: #444;
+            padding: 1em;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .intro {
+            padding: 20px;
+            text-align: center;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .cta-button:hover {
+            background-color: #45a049;
+        }
+        footer {
+            text-align: center;
+            padding: 1em;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Stock Investment App</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('top5_stocks') }}">Top 5 Stocks</a></li>
+            <li><a href="{{ url_for('predictions') }}">Predictions</a></li>
+            <li><a href="{{ url_for('candlesticks') }}">Candlestick Charts</a></li>
+            <li><a href="{{ url_for('portfolio') }}">Manage Portfolio</a></li>
+            <li><a href="{{ url_for('gold_predictions') }}">Gold Predictions</a></li>
+        </ul>
+    </nav>
+    <section class="intro">
+        <h2>Track, Analyze, and Predict Your Favorite Stocks</h2>
+        <p>Use this app to explore real-time data, analyze stock performance, forecast future trends, and view live gold prices. Manage your portfolio with ease and stay ahead in the stock market.</p>
+        <a href="{{ url_for('portfolio') }}" class="cta-button">Get Started with Your Portfolio</a>
+    </section>
+    <footer>
+        <p>© 2025 Stock Investment App. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

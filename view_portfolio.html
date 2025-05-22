@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - {{ username }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Portfolio for {{ username }}</h1>
+    
+    <h2>Stock Details</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Stock</th>
+                <th>Quantity</th>
+                <th>Buying Price</th>
+                <th>Current Price</th>
+                <th>Profit/Loss (%)</th>
+                <th>Total Value</th>
+                <th>Initial Value</th>
+                <th>Profit/Loss Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in portfolio %}
+            <tr>
+                <td>{{ stock.stock }}</td>
+                <td>{{ stock.quantity }}</td>
+                <td>${{ "%.2f"|format(stock.buying_price) }}</td>
+                <td>${{ "%.2f"|format(stock.current_price) }}</td>
+                <td>{{ "%.2f"|format(stock.profit_loss) }}%</td>
+                <td>${{ "%.2f"|format(stock.total_value) }}</td>
+                <td>${{ "%.2f"|format(stock.initial_value) }}</td>
+                <td>${{ "%.2f"|format(stock.profit_loss_value) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <h2>Total Profit/Loss: ${{ "%.2f"|format(total_profit_loss) }}</h2>
+    
+    <h2>Buying Price vs Current Price</h2>
+    <div id="line_graph">
+        {{ line_graph_html | safe }}
+    </div>
+    
+    <p>
+        <a href="{{ url_for('portfolio_classification', username=username) }}">View Portfolio Risk Classification</a>
+        <a href="{{ url_for('portfolio') }}">Add More Stocks</a>
+        <a href="{{ url_for('home') }}">Back to Home</a>
+    </p>
+</body>
+</html>

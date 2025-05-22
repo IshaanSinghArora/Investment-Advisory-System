@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 5 Stocks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Top 5 Performing Stocks</h1>
+    </header>
+    <table>
+        <thead>
+            <tr>
+                <th>Ticker</th>
+                <th>Real Time Value</th>
+                <th>EPS</th>
+                <th>PE Ratio</th>
+                <th>Dividend Yield</th>
+                <th>ROE</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in top_stocks.itertuples() %}
+            <tr>
+                <td>{{ stock.Ticker }}</td>
+                <td>{{ stock.RealTimeValue }}</td>
+                <td>{{ stock.EPS }}</td>
+                <td>{{ stock.PE_ratio }}</td>
+                <td>{{ stock.Dividend_yield }}</td>
+                <td>{{ stock.ROE }}</td>
+                <td>{{ stock.Score }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <footer>
+        <a href="{{ url_for('home') }}">Back to Home</a>
+    </footer>
+</body>
+</html>

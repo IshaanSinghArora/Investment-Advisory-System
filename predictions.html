@@ -1,0 +1,32 @@
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Predictions</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        a { color: #4CAF50; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Stock Predictions</h1>
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% else %}
+        <p>Average Prediction Accuracy: {{ average_accuracy }}%</p>
+        {% for ticker, preds in predictions.items() %}
+        <h3>{{ ticker }}</h3>
+        <p>Accuracy: {{ accuracies[ticker] }}%</p>
+        <ul>
+            {% for date, pred in prediction_dates[ticker]|zip(preds) %}
+            <li>{{ date }}: ${{ "%.2f"|format(pred) }}</li>
+            {% endfor %}
+        </ul>
+        {% endfor %}
+    {% endif %}
+    <p><a href="{{ url_for('home') }}">Back to Home</a></p>
+</body>
+</html>
